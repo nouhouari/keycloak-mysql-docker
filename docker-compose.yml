@@ -1,0 +1,19 @@
+mysql:
+  container_name: mysql
+  image: mysql
+  ports:
+    - "3306:3306"
+  volumes:
+    - /home/rvallejo/keycloak/mysql:/var/lib/mysql
+  env_file:
+     - ./common.env
+keycloak:
+  container_name: keycloak
+  image: rxvallejoc/keycloak-server-mysql:1.5.1
+  ports:
+    - "8080:8080"
+  links:
+    - mysql
+  env_file:
+     - ./common.env
+
