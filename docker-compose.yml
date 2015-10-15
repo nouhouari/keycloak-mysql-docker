@@ -1,5 +1,5 @@
 mysql:
-  container_name: mysql
+  name: mysql
   image: mysql
   ports:
     - "3306:3306"
@@ -8,7 +8,7 @@ mysql:
   env_file:
      - ./common.env
 keycloak:
-  container_name: keycloak
+  name: keycloak
   image: rxvallejoc/keycloak-server-mysql:1.5.1
   ports:
     - "8080:8080"
