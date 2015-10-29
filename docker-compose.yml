@@ -4,16 +4,22 @@ mysql:
   ports:
     - "3306:3306"
   volumes:
-    - /home/rvallejo/keycloak/mysql:/var/lib/mysql
+    - /home/web/keycloak/mysql:/var/lib/mysql
   env_file:
      - ./common.env
 keycloak:
   name: keycloak
-  image: rxvallejoc/keycloak-server-mysql:1.5.1
+  image: rxvallejoc/keycloak-server-mysql:1.6.1
   ports:
     - "8080:8080"
   links:
     - mysql
   env_file:
      - ./common.env
-
+apache:
+  name: apache
+  image: rxvallejoc/apache-proxy
+  ports:
+    - "80:80"
+  links:
+    - keycloak
