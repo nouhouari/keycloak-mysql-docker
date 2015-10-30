@@ -16,6 +16,11 @@ keycloak:
     - mysql
   env_file:
      - ./common.env
+demo:
+  name: demo
+  image: rxvallejoc/wildfly-demo:8.2.1
+  ports:
+    - "8080:8080"
 apache:
   name: apache
   image: rxvallejoc/apache-proxy
@@ -23,3 +28,4 @@ apache:
     - "80:80"
   links:
     - keycloak
+    - demo
