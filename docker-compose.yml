@@ -11,7 +11,7 @@ keycloak:
   name: keycloak
   image: rxvallejoc/keycloak-server-mysql:1.6.1
   ports:
-    - "8080:8080"
+    - "8081:8081"
   links:
     - mysql
   env_file:
