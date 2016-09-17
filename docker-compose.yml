@@ -1,31 +1,19 @@
 mysql:
-  name: mysql
-  image: mysql
+  image: mysql 
   ports:
     - "3306:3306"
   volumes:
-    - /home/web/keycloak/mysql:/var/lib/mysql
+    - ~/dockerVolumes/mysql/keycloak:/var/lib/mysql
   env_file:
      - ./common.env
 keycloak:
-  name: keycloak
-  image: rxvallejoc/keycloak-server-mysql:1.6.1
+  image: jboss/keycloak-mysql
+  environment:
+    - KEYCLOAK_USER=admin
+    - KEYCLOAK_PASSWORD=admin
   ports:
-    - "8081:8081"
+    - "8181:8080"
   links:
     - mysql
   env_file:
      - ./common.env
-demo:
-  name: demo
-  image: rxvallejoc/wildfly-demo:8.2.1
-  ports:
-    - "8080:8080"
-apache:
-  name: apache
-  image: rxvallejoc/apache-proxy
-  ports:
-    - "80:80"
-  links:
-    - keycloak
-    - demo
